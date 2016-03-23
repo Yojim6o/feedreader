@@ -27,16 +27,34 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* DONE: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
 
-
-        /* TODO: Write a test that loops through each feed
+        /* DONE: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        function defined(i, value, param) {
+            it("has a " + param + " that is defined in feed #" + (i+1), function() {
+                expect(value).toBeDefined();
+            });
+        }
+
+        function notEmpty(i, value, param) {
+            it('has a ' + param + ' that is not empty in feed #' + (i+1), function() {
+                expect(value).not.toBe('');
+            });
+        }
+
+        for (var i = 0; i < allFeeds.length; i++) {
+            defined(i, allFeeds[i].url, "url");
+            notEmpty(i, allFeeds[i].url, "url");
+            defined(i, allFeeds[i].name, "name");
+            notEmpty(i, allFeeds[i].name, "name");
+        }       
     });
 
 

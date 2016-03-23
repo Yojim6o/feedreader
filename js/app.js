@@ -109,7 +109,8 @@ $(function() {
     allFeeds.forEach(function(feed) {
         feed.id = feedId;
         feedList.append(feedItemTemplate(feed));
-
+            // TODO: Write a test that loops through each feed in the allFeeds object and ensures 
+            //  it has a name defined and that the name is not empty.  
         feedId++;
     });
 
