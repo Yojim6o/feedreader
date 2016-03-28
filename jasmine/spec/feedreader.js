@@ -13,7 +13,7 @@ $(function() {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe("RSS Feeds", function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+        it("are defined", function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -44,7 +44,7 @@ $(function() {
 
         function notEmpty(i, value, param) {
             it("has a " + param + " that is not empty in feed #" + (i+1), function() {
-                expect(value).not.toBe('');
+                expect(value).not.toBe("");
                 expect(value.length).not.toBe(0);
             });
         }
@@ -58,10 +58,10 @@ $(function() {
     });
 
     /* DONE: Write a new test suite named "The menu" */
-    describe('The menu', function() {
-        var body = $('body');
-        var hamburger = $('.menu-icon-link');
-        var defaultClass = body.attr('class');
+    describe("The menu", function() {
+        var body = $("body");
+        var hamburger = $(".menu-icon-link");
+        var defaultClass = body.attr("class");
 
         /* DONE: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -69,7 +69,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it ("is hidden by default", function() {
-            expect(defaultClass).toBe('menu-hidden');
+            expect(defaultClass).toBe("menu-hidden");
         });
 
         /* DONE: Write a test that ensures the menu changes
@@ -79,15 +79,15 @@ $(function() {
         */
         it ("toggles visibility on click event", function() {
             hamburger.click();
-            expect(body.attr('class')).toBe('');
+            expect(body.attr("class")).toBe("");
 
             hamburger.click();
-            expect(body.attr('class')).toBe('menu-hidden');          
+            expect(body.attr("class")).toBe("menu-hidden");          
         });
     });
 
     /* DONE: Write a new test suite named "Initial Entries" */
-    describe('Initial Entries', function() {
+    describe("Initial Entries", function() {
         /* DONE: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -101,14 +101,14 @@ $(function() {
             });
         });
 
-        it('contain at least one result', function() {
-            expect($('.entry').length).toBeGreaterThan(0);
+        it("contain at least one result", function() {
+            expect($(".entry").length).toBeGreaterThan(0);
         });
     });
 
 
     /* DONE: Write a new test suite named "New Feed Selection" */
-    describe('New Feed Selection', function() {
+    describe("New Feed Selection", function() {
         /* DONE: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
@@ -117,14 +117,14 @@ $(function() {
         var oldFeed;
 
         beforeEach(function(done) {
-            var oldFeed = $('.feed').html();
+            var oldFeed = $(".feed").html();
             loadFeed(1, function() {
                 done();
             });
         });
 
-        it('changes the feed', function() {
-          var newFeed = $('.feed').html();
+        it("changes the feed", function() {
+          var newFeed = $(".feed").html();
           expect(newFeed).toBeDefined();
           expect(newFeed).not.toBe(oldFeed);
         });
