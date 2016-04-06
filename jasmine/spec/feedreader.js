@@ -61,7 +61,7 @@ $(function() {
     describe('The menu', function() {
         var $body = $('body'),
             $hamburger = $('.menu-icon-link'),
-            $defaultClass = $body.attr('class');
+            $defaultClass = $body.hasClass('menu-hidden');
 
         /* DONE: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -69,7 +69,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it ('is hidden by default', function() {
-            expect($defaultClass).toBe('menu-hidden');
+            expect($defaultClass).toBeTruthy();
         });
 
         /* DONE: Write a test that ensures the menu changes
@@ -80,10 +80,10 @@ $(function() {
         it ('toggles visibility on click event', function() {
             if ($body.hasClass('menu-hidden')) {
                 $hamburger.click();
-                expect($body.attr('menu-hidden')).toBeFalsy();
+                expect($body.hasClass('menu-hidden')).toBeFalsy();
             } else {
                 $hamburger.click();
-                expect($body.attr('menu-hidden')).toBeTruthy();
+                expect($body.hasClass('menu-hidden')).toBeTruthy();
             }
         });
     });
@@ -114,24 +114,18 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        var $oldFeed;
+        var $oldFeed = "";
+        var $newFeed = "";
 
         beforeEach(function(done) {
             loadFeed(0, done);
+            var $oldFeed = $('.feed').html();
         });
 
-        beforeEach(function(done) {
-            $oldFeed = $('.feed').html();
-            loadFeed(1, function() {
-                done();
-            });
-        });
-
-        it('changes the feed', function(done) {
-            var newFeed = $('.feed').html();
-            expect(newFeed).toBeDefined();
-            expect(newFeed).not.toBe($oldFeed);
-            done();
+        it('changes the feed', function() {
+            loadFeed(1);
+            var $newFeed = $('.feed').html();
+            expect($newFeed).not.toBe($oldFeed);
         });
     });
 
