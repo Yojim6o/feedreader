@@ -118,13 +118,14 @@ $(function() {
         var $newFeed = "";
 
         beforeEach(function(done) {
-            loadFeed(0, done);
-            var $oldFeed = $('.feed').html();
+            loadFeed(0, function() {
+                $oldFeed = $('.feed').html();
+                loadFeed(1, done);
+            });
         });
 
         it('changes the feed', function() {
-            loadFeed(1);
-            var $newFeed = $('.feed').html();
+            $newFeed = $('.feed').html();
             expect($newFeed).not.toBe($oldFeed);
         });
     });
